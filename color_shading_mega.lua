@@ -222,7 +222,7 @@ function showColors(shadingColor, fg, bg, windowBounds)
   }:shades {
      -- SOFT HUE
     id = "shue",
-    label = "Hue",
+    label = "Soft Hue",
     colors = {H1, H2, H3, H4, C, H6, H7, H8, H9},
     onclick = function(ev)
       if(ev.button == MouseButton.LEFT) then
@@ -240,7 +240,7 @@ function showColors(shadingColor, fg, bg, windowBounds)
   }:shades {
      -- HARD HUE
     id = "hhue",
-    label = "Hue",
+    label = "Hard Hue",
     colors = {C, HH1, HH2, HH3, HH4, HH5, HH6, HH7, HH8},
     onclick = function(ev)
       if(ev.button == MouseButton.LEFT) then
