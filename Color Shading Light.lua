@@ -2,7 +2,8 @@
 -- Aseprite Script that opens a dynamic palette picker window with relevant color shading options
 -- Written by Dominick John, twitter @dominickjohn
 -- Contributed to by David Capello
--- https://github.com/dominickjohn/aseprite/
+-- Expanded and changed by Chaonic
+-- https://github.com/ChaonicTheDeathKitten/aseprite/
 
 -- Instructions:
 --    Place this file into the Aseprite scripts folder (File -> Scripts -> Open Scripts Folder)
@@ -81,7 +82,7 @@ function showColors(shadingColor, fg, bg, windowBounds)
   local dlg
   dlg =
     Dialog {
-    title = "Color Shading"
+    title = "Color Shading Light"
   }
 
   -- CACHING
@@ -102,36 +103,59 @@ function showColors(shadingColor, fg, bg, windowBounds)
   end
 
   -- SHADING COLORS
-  local S1 = colorShift(C, 0, 0.3, -0.6, -0.6)
-  local S2 = colorShift(C, 0, 0.2, -0.2, -0.3)
-  local S3 = colorShift(C, 0, 0.1, -0.1, -0.1)
-  local S5 = colorShift(C, 0, 0.1, 0.1, 0.1)
-  local S6 = colorShift(C, 0, 0.2, 0.2, 0.2)
-  local S7 = colorShift(C, 0, 0.3, 0.5, 0.4)
+  local S1 = colorShift(C, 0, 0.3, -0.5, -0.5)
+  local S2 = colorShift(C, 0, 0.2, -0.3, -0.3)
+  local S3 = colorShift(C, 0, 0.1, -0.15, -0.15)
+  local S5 = colorShift(C, 0, 0.1, 0.15, 0.15)
+  local S6 = colorShift(C, 0, 0.2, 0.3, 0.3)
+  local S7 = colorShift(C, 0, 0.3, 0.5, 0.5)
 
-  -- LIGHTNESS COLORS
-  local L1 = colorShift(C, 0, 0, -0.4, 0)
-  local L2 = colorShift(C, 0, 0, -0.2, 0)
-  local L3 = colorShift(C, 0, 0, -0.1, 0)
-  local L5 = colorShift(C, 0, 0, 0.1, 0)
-  local L6 = colorShift(C, 0, 0, 0.2, 0)
-  local L7 = colorShift(C, 0, 0, 0.4, 0)
+  -- SHADING COLORS HARDER
+  local SY1 = colorShift(C, 0, 0.42, -0.7, -0.7)
+  local SY2 = colorShift(C, 0, 0.28, -0.466, -0.466)
+  local SY3 = colorShift(C, 0, 0.14, -0.233, -0.233)
+  local SY5 = colorShift(C, 0, 0.14, 0.233, 0.233)
+  local SY6 = colorShift(C, 0, 0.28, 0.466, 0.466)
+  local SY7 = colorShift(C, 0, 0.42, 0.7, 0.7)
+
+  -- SOFT LIGHTNESS COLORS
+  local L1 = colorShift(C, 0, 0, -0.45, 0)
+  local L2 = colorShift(C, 0, 0, -0.3, 0)
+  local L3 = colorShift(C, 0, 0, -0.15, 0)
+  local L5 = colorShift(C, 0, 0, 0.15, 0)
+  local L6 = colorShift(C, 0, 0, 0.3, 0)
+  local L7 = colorShift(C, 0, 0, 0.45, 0)
+
+  -- HARD LIGHTNESS COLORS
+  local HL1 = colorShift(C, 0, 0, -0.75, 0)
+  local HL2 = colorShift(C, 0, 0, -0.5, 0)
+  local HL3 = colorShift(C, 0, 0, -0.25, 0)
+  local HL5 = colorShift(C, 0, 0, 0.25, 0)
+  local HL6 = colorShift(C, 0, 0, 0.5, 0)
+  local HL7 = colorShift(C, 0, 0, 0.75, 0)
 
   -- SATURATION COLORS
-  local C1 = colorShift(C, 0, -0.5, 0, 0)
-  local C2 = colorShift(C, 0, -0.2, 0, 0)
-  local C3 = colorShift(C, 0, -0.1, 0, 0)
-  local C5 = colorShift(C, 0, 0.1, 0, 0)
-  local C6 = colorShift(C, 0, 0.2, 0, 0)
-  local C7 = colorShift(C, 0, 0.5, 0, 0)
+  local C1 = colorShift(C, 0, -0.75, 0, 0)
+  local C2 = colorShift(C, 0, -0.5, 0, 0)
+  local C3 = colorShift(C, 0, -0.25, 0, 0)
+  local C5 = colorShift(C, 0, 0.25, 0, 0)
+  local C6 = colorShift(C, 0, 0.5, 0, 0)
+  local C7 = colorShift(C, 0, 0.75, 0, 0)
 
-  -- HUE COLORS
-  local H1 = colorShift(C, -0.15, 0, 0, 0)
-  local H2 = colorShift(C, -0.1, 0, 0, 0)
-  local H3 = colorShift(C, -0.05, 0, 0, 0)
-  local H5 = colorShift(C, 0.05, 0, 0, 0)
-  local H6 = colorShift(C, 0.1, 0, 0, 0)
-  local H7 = colorShift(C, 0.15, 0, 0, 0)
+  -- SOFT HUE COLORS
+  local H1 = colorShift(C, -0.125, 0, 0, 0)
+  local H2 = colorShift(C, -0.0833, 0, 0, 0)
+  local H3 = colorShift(C, -0.0416, 0, 0, 0)
+  local H5 = colorShift(C, 0.0416, 0, 0, 0)
+  local H6 = colorShift(C, 0.0833, 0, 0, 0)
+  local H7 = colorShift(C, 0.125, 0, 0, 0)
+  
+  -- HARD HUE COLORS
+  local HH1 = colorShift(C, 0.1666, 0, 0, 0)
+  local HH2 = colorShift(C, 0.3333, 0, 0, 0)
+  local HH3 = colorShift(C, 0.5, 0, 0, 0)
+  local HH4 = colorShift(C, 0.6666, 0, 0, 0)
+  local HH5 = colorShift(C, 0.8333, 0, 0, 0)
 
   -- DIALOGUE
   dlg:
@@ -169,10 +193,42 @@ function showColors(shadingColor, fg, bg, windowBounds)
       end
     end
   }:shades {
+     -- SHADIER
+    id = "shady",
+    label = "Shadier",
+    colors = {SY1, SY2, SY3, C, SY5, SY6, SY7},
+    onclick = function(ev)
+      if(ev.button == MouseButton.LEFT) then
+        app.fgColor = ev.color
+      elseif(ev.button == MouseButton.RIGHT) then
+        app.bgColor = ev.color
+      elseif(ev.button == MouseButton.MIDDLE) then
+        app.fgColor = ev.color
+        showColors(ev.color, ev.color, BGcache, dlg.bounds)
+        dlg:close()
+      end
+    end
+  }:shades {
      -- LIGHTNESS
-    id = "lit",
-    label = "Light",
+    id = "slit",
+    label = "Soft Light",
     colors = {L1, L2, L3, C, L5, L6, L7},
+    onclick = function(ev)
+      if(ev.button == MouseButton.LEFT) then
+        app.fgColor = ev.color
+      elseif(ev.button == MouseButton.RIGHT) then
+        app.bgColor = ev.color
+      elseif(ev.button == MouseButton.MIDDLE) then
+        app.fgColor = ev.color
+        showColors(ev.color, ev.color, BGcache, dlg.bounds)
+        dlg:close()
+      end
+    end
+  }:shades {
+     -- LIGHTNESS
+    id = "hlit",
+    label = "Hard Light",
+    colors = {HL1, HL2, HL3, C, HL5, HL6, HL7},
     onclick = function(ev)
       if(ev.button == MouseButton.LEFT) then
         app.fgColor = ev.color
@@ -202,9 +258,27 @@ function showColors(shadingColor, fg, bg, windowBounds)
     end
   }:shades {
      -- HUE
-    id = "hue",
-    label = "Hue",
+    id = "shue",
+    label = "Soft Hue",
     colors = {H1, H2, H3, C, H5, H6, H7},
+    onclick = function(ev)
+      if(ev.button == MouseButton.LEFT) then
+        app.fgColor = ev.color
+        --showColors(SCcache, FGcache, BGcache, dlg.bounds)
+      elseif(ev.button == MouseButton.RIGHT) then
+        app.bgColor = ev.color
+        --showColors(SCcache, FGcache, BGcache, dlg.bounds)
+      elseif(ev.button == MouseButton.MIDDLE) then
+        app.fgColor = ev.color
+        showColors(ev.color, ev.color, BGcache, dlg.bounds)
+        dlg:close()
+      end
+    end
+  }:shades {
+     -- HUE
+    id = "hhue",
+    label = "Hard Hue",
+    colors = {C, HH1, HH2, HH3, HH4, HH5, HH6},
     onclick = function(ev)
       if(ev.button == MouseButton.LEFT) then
         app.fgColor = ev.color
