@@ -116,6 +116,34 @@ function showColors(shadingColor, fg, bg, windowBounds)
   local SH12 = colorShift(C, 0, 0.333, 0.5, 0.5)
   local SH13 = colorShift(C, 0, 0.4, 0.6, 0.6)
 
+  -- SHADING COLORS SOFTLY
+  local SHF1 = colorShift(C, 0, 0.3, -0.45, -0.45)
+  local SHF2 = colorShift(C, 0, 0.25, -0.375, -0.375)
+  local SHF3 = colorShift(C, 0, 0.2, -0.3, -0.3)
+  local SHF4 = colorShift(C, 0, 0.15, -0.225, -0.225)
+  local SHF5 = colorShift(C, 0, 0.1, -0.15, -0.15)
+  local SHF6 = colorShift(C, 0, 0.05, -0.075, -0.075)
+  local SHF8 = colorShift(C, 0, 0.05, 0.075, 0.075)
+  local SHF9 = colorShift(C, 0, 0.1, 0.15, 0.15)
+  local SHF10 = colorShift(C, 0, 0.15, 0.225, 0.225)
+  local SHF11 = colorShift(C, 0, 0.2, 0.3, 0.3)
+  local SHF12 = colorShift(C, 0, 0.25, 0.375, 0.375)
+  local SHF13 = colorShift(C, 0, 0.3, 0.45, 0.45)
+
+  -- SKIN
+  local SK1 = colorShift(C, 0, 0.3, -0.45, -0.3)
+  local SK2 = colorShift(C, 0, 0.25, -0.375, -0.25)
+  local SK3 = colorShift(C, 0, 0.2, -0.3, -0.2)
+  local SK4 = colorShift(C, 0, 0.15, -0.225, -0.15)
+  local SK5 = colorShift(C, 0, 0.1, -0.15, -0.1)
+  local SK6 = colorShift(C, 0, 0.05, -0.075, -0.05)
+  local SK8 = colorShift(C, 0, -0.025, 0.075, 0.025)
+  local SK9 = colorShift(C, 0, 0.05, 0.15, 0.05)
+  local SK10 = colorShift(C, 0, 0.075, 0.225, 0.075)
+  local SK11 = colorShift(C, 0, 0.1, 0.3, 0.1)
+  local SK12 = colorShift(C, 0, 0.125, 0.375, 0.125)
+  local SK13 = colorShift(C, 0, 0.15, 0.45, 0.15)
+
   -- LIGHTNESS COLORS
   local LI1 = colorShift(C, 0, 0, -0.8571, 0)
   local LI2 = colorShift(C, 0, 0, -0.7142, 0)
@@ -129,6 +157,20 @@ function showColors(shadingColor, fg, bg, windowBounds)
   local LI11 = colorShift(C, 0, 0, 0.5714, 0)
   local LI12 = colorShift(C, 0, 0, 0.7142, 0)
   local LI13 = colorShift(C, 0, 0, 0.8571, 0)
+
+  -- LIGHTNESS COLORS
+  local LS1 = colorShift(C, 0, 0, -0.5, 0)
+  local LS2 = colorShift(C, 0, 0, -0.4166, 0)
+  local LS3 = colorShift(C, 0, 0, -0.3333, 0)
+  local LS4 = colorShift(C, 0, 0, -0.25, 0)
+  local LS5 = colorShift(C, 0, 0, -0.1666, 0)
+  local LS6 = colorShift(C, 0, 0, -0.0833, 0)
+  local LS8 = colorShift(C, 0, 0, 0.0833, 0)
+  local LS9 = colorShift(C, 0, 0, 0.1666, 0)
+  local LS10 = colorShift(C, 0, 0, 0.25, 0)
+  local LS11 = colorShift(C, 0, 0, 0.3333, 0)
+  local LS12 = colorShift(C, 0, 0, 0.4166, 0)
+  local LS13 = colorShift(C, 0, 0, 0.5, 0)
 
   -- SATURATION COLORS
   local SA1 = colorShift(C, 0, -0.8571, 0, 0)
@@ -207,10 +249,58 @@ function showColors(shadingColor, fg, bg, windowBounds)
       end
     end
   }:shades {
+     -- SHADING SOFTLY
+    id = "shasf",
+    label = "Soft Shade",
+    colors = {SHF1, SHF2, SHF3, SHF4, SHF5, SHF6, C, SHF8, SHF9, SHF10, SHF11, SHF12, SHF13},
+    onclick = function(ev)
+      if(ev.button == MouseButton.LEFT) then
+        app.fgColor = ev.color
+      elseif(ev.button == MouseButton.RIGHT) then
+        app.bgColor = ev.color
+      elseif(ev.button == MouseButton.MIDDLE) then
+        app.fgColor = ev.color
+        showColors(ev.color, ev.color, BGcache, dlg.bounds)
+        dlg:close()
+      end
+    end
+  }:shades {
+     -- SKIN
+    id = "skin",
+    label = "Skin",
+    colors = {SK1, SK2, SK3, SK4, SK5, SK6, C, SK8, SK9, SK10, SK11, SK12, SK13},
+    onclick = function(ev)
+      if(ev.button == MouseButton.LEFT) then
+        app.fgColor = ev.color
+      elseif(ev.button == MouseButton.RIGHT) then
+        app.bgColor = ev.color
+      elseif(ev.button == MouseButton.MIDDLE) then
+        app.fgColor = ev.color
+        showColors(ev.color, ev.color, BGcache, dlg.bounds)
+        dlg:close()
+      end
+    end
+  }:shades {
      -- LIGHTNESS
     id = "litu",
     label = "Light",
     colors = {LI1, LI2, LI3, LI4, LI5, LI6, C, LI8, LI9, LI10, LI11, LI12, LI13},
+    onclick = function(ev)
+      if(ev.button == MouseButton.LEFT) then
+        app.fgColor = ev.color
+      elseif(ev.button == MouseButton.RIGHT) then
+        app.bgColor = ev.color
+      elseif(ev.button == MouseButton.MIDDLE) then
+        app.fgColor = ev.color
+        showColors(ev.color, ev.color, BGcache, dlg.bounds)
+        dlg:close()
+      end
+    end
+  }:shades {
+     -- SOFT LIGHTNESS
+    id = "lits",
+    label = "Soft Light",
+    colors = {LS1, LS2, LS3, LS4, LS5, LS6, C, LS8, LS9, LS10, LS11, LS12, LS13},
     onclick = function(ev)
       if(ev.button == MouseButton.LEFT) then
         app.fgColor = ev.color
